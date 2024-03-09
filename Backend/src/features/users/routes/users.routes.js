@@ -1,6 +1,6 @@
 // Router for the user is here
 import express from "express";
-import { loginUser, registerUser } from "../controller/user.controller.js";
+import { loginUser, registerUser } from "../controller/users.controller.js";
 
 const router = express.Router();
 

@@ -1,7 +1,7 @@
 // Middleware to verify token
 import jwt from "jsonwebtoken";
+import User from "../features/users/model/users.schema.js";
 import ErrorHandler from "../utils/ErrorHandler.js";
-import User from "../features/users/model/user.schema.js";
 
 const verifyToken = async (req, res, next) => {
   // Get token from cookies

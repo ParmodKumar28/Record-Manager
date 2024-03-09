@@ -7,8 +7,11 @@ import express from "express";
 import { ErrorHandlerMiddleware } from "./middlewares/errorHandlerMiddleware.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import verifyToken from "./middlewares/auth.js";
 
 // Routers imports
+import usersRouter from "./features/users/routes/users.routes.js";
+import recordsRouter from "./features/records/routes/records.routes.js";
 
 // Creating server
 const app = express();
@@ -34,6 +37,8 @@ app.get("/", (req, res, next) => {
 });
 
 // Routes
+app.use("/api/users", usersRouter);
+app.use("/api/records", verifyToken, recordsRouter);
 
 // Handling invalid routes
 app.use((req, res, next) => {
