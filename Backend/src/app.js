@@ -16,31 +16,14 @@ import recordsRouter from "./features/records/routes/records.routes.js";
 // Creating server
 const app = express();
 
-// Setting up cors
-// app.use(
-//   cors({
-//     // origin: [
-//     //   "https://record-manager-ug87.onrender.com",
-//     //   "https://record-manager88.netlify.app",
-//     // ], // Replace with your frontend origin
-//     origin: "*",
-//     credentials: true, // Allow credentials (cookies)
-//   })
-// );
-app.use((req, res, next) => {
-  const allowedOrigins = [
+// CORS Configuration
+app.use(cors({
+  origin: [
     "https://record-manager-ug87.onrender.com",
-    "https://record-manager88.netlify.app",
-  ];
-  const origin = req.headers.origin;
-  if (allowedOrigins.includes(origin)) {
-    res.setHeader("Access-Control-Allow-Origin", origin);
-  }
-  res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
-  res.header("Access-Control-Allow-Headers", "Content-Type,Authorization");
-  res.header("Access-Control-Allow-Credentials", true);
-  next();
-});
+    "https://record-manager88.netlify.app"
+  ],
+  credentials: true // Allow credentials (cookies)
+}));
 
 // Cookie parser
 app.use(cookieParser());
