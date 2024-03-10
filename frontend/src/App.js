@@ -16,7 +16,7 @@ function App() {
   return (
     <div className="min-h-screen bg-gray-100">
       {/* Render Dashboard component if loggedIn is true, otherwise render Login component */}
-      {loggedIn ? <Dashboard /> : <Login onLogin={handleLogin} />}
+      {loggedIn ? <Dashboard /> : <Login onLogin={handleLogin} setLoggedIn={setLoggedIn} />}
     </div>
   );
 }

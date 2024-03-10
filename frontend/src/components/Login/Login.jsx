@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from '../../axios';
 import { FaUser, FaLock } from 'react-icons/fa';
 
-function Login({ onLogin }) {
+function Login({ onLogin, setLoggedIn }) {
     // State variables for username, password, and error message
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -14,9 +14,10 @@ function Login({ onLogin }) {
         try {
             // Send a POST request to the server to authenticate the user
             const response = await axios.post('users/login', { username, password });
-            console.log(response.data); 
+            console.log(response.data);
+            setLoggedIn(true);
             // If the response status is OK, call the onLogin function passed as prop
-            if (response.statusText === "OK") {
+            if (response.message === "Login successful") {
                 onLogin();
             }
         } catch (error) {
