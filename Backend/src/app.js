@@ -19,7 +19,10 @@ const app = express();
 // Setting up cors
 app.use(
   cors({
-    origin: "https://record-manager-ug87.onrender.com", // Replace with your frontend origin
+    origin: [
+      "https://record-manager-ug87.onrender.com",
+      "https://record-manager88.netlify.app",
+    ], // Replace with your frontend origin
     credentials: true, // Allow credentials (cookies)
   })
 );
