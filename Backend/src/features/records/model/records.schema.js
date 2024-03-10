@@ -17,7 +17,7 @@ const recordSchema = new mongoose.Schema(
     },
     database: {
       type: String,
-      enum: ["databaseOne", "databaseTwo", "databaseThree"],
+      enum: ["database1", "database2", "database3"],
       required: true,
     },
   },
