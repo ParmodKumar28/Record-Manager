@@ -61,8 +61,10 @@ export const loginUser = async (req, res, next) => {
 
     // Set token in cookie
     res.cookie("token", token, {
-      secure: true,
+      httpOnly: true,
       maxAge: 3600000, // 1 hour in milliseconds
+      secure: true, // Set to true if serving over HTTPS
+      sameSite: "strict",
     });
 
     res.json({ message: "Login successful" });
