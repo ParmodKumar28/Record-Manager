@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from '../../axios';
 
 function Dashboard() {
+    // State variables
     const [activeDatabase, setActiveDatabase] = useState('database1');
     const [records, setRecords] = useState([]);
     const [sortKey, setSortKey] = useState('');
@@ -13,11 +14,14 @@ function Dashboard() {
         phoneNumber: '',
     });
     const [notification, setNotification] = useState('');
+    const [errorNotification, setErrorNotification] = useState('');
 
+    // Fetch records based on active database
     useEffect(() => {
         fetchRecords(activeDatabase);
     }, [activeDatabase]);
 
+    // Fetch records function
     const fetchRecords = async (database) => {
         try {
             const response = await axios.get(`/records?database=${database}`);
@@ -27,6 +31,7 @@ function Dashboard() {
         }
     };
 
+    // Sort records function
     const handleSort = (key) => {
         if (sortKey === key) {
             setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
@@ -36,6 +41,7 @@ function Dashboard() {
         }
     };
 
+    // Handle input change in new record form
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setNewRecord({
@@ -44,6 +50,7 @@ function Dashboard() {
         });
     };
 
+    // Handle form submission to add a new record
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -60,10 +67,15 @@ function Dashboard() {
             }, 3000); // Clear the notification after 3 seconds
         } catch (error) {
             console.error('Error adding record:', error);
+            setErrorNotification(error.response.data.error);
+            setTimeout(() => {
+                setErrorNotification('');
+            }, 3000); // Clear the error notification after 3 seconds
         }
     };
 
 
+    // Sort and filter records
     const sortedRecords = [...records].sort((a, b) => {
         if (sortKey && sortOrder === 'asc') {
             return a[sortKey].localeCompare(b[sortKey]);
@@ -73,7 +85,6 @@ function Dashboard() {
             return 0;
         }
     });
-
     const filteredRecords = sortedRecords.filter((record) => {
         return (
             record.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -82,11 +93,13 @@ function Dashboard() {
         );
     });
 
+    // JSX for the dashboard component
     return (
         <div className="container mx-auto p-4">
             <div className="mb-4">
                 <h2 className="text-xl font-bold mb-2">Dashboard</h2>
                 {notification && <div className="bg-green-200 text-green-800 p-2 mb-2">{notification}</div>}
+                {errorNotification && <div className="bg-red-200 text-red-800 p-2 mb-2">{errorNotification}</div>}
                 <div className="flex items-center mb-4">
                     <select
                         value={activeDatabase}
