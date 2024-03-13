@@ -39,7 +39,7 @@ app.get("/", (req, res, next) => {
 
 // Routes
 app.use("/api/users", usersRouter);
-app.use("/api/records", verifyToken, recordsRouter);
+app.use("/api/records", recordsRouter);
 
 // Handling invalid routes
 app.use((req, res, next) => {
