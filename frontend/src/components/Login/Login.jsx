@@ -25,6 +25,7 @@ function Login({ onLogin, setLoggedIn }) {
             }
         } catch (error) {
             // If an error occurs during login, set the error message
+            setloginLoading(false)
             console.log(error);
             if (error.response.data.error) {
                 setError(error.response.data.error)
