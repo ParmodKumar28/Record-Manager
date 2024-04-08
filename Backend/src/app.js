@@ -17,13 +17,17 @@ import recordsRouter from "./features/records/routes/records.routes.js";
 const app = express();
 
 // CORS Configuration
-app.use(cors({
-  origin: [
-    "https://record-manager-ug87.onrender.com",
-    "https://record-manager88.netlify.app"
-  ],
-  credentials: true // Allow credentials (cookies)
-}));
+app.use(
+  cors({
+    origin: [
+      "http://localhost:8000",
+      "http://localhost:3000",
+      "https://record-manager-ug87.onrender.com",
+      "https://record-manager88.netlify.app",
+    ],
+    credentials: true, // Allow credentials (cookies)
+  })
+);
 
 // Cookie parser
 app.use(cookieParser());
@@ -39,7 +43,7 @@ app.get("/", (req, res, next) => {
 
 // Routes
 app.use("/api/users", usersRouter);
-app.use("/api/records", verifyToken, recordsRouter);
+app.use("/api/records", recordsRouter);
 
 // Handling invalid routes
 app.use((req, res, next) => {

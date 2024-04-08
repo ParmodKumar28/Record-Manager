@@ -7,23 +7,30 @@ function Login({ onLogin, setLoggedIn }) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const [loginLoading, setloginLoading] = useState(false);
 
     // Function to handle form submission
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setloginLoading(true);
         try {
             // Send a POST request to the server to authenticate the user
-            const response = await axios.post('users/login', { username, password });
+            const response = await axios.post('/users/login', { username, password });
             console.log(response.data);
             setLoggedIn(true);
             // If the response status is OK, call the onLogin function passed as prop
             if (response.message === "Login successful") {
+                setloginLoading(false)
                 onLogin();
             }
         } catch (error) {
             // If an error occurs during login, set the error message
             console.log(error);
-            setError(error.response.data.error)
+            if (error.response.data.error) {
+                setError(error.response.data.error)
+            } else {
+                setError(error);
+            }
         }
     };
 
@@ -45,7 +52,7 @@ function Login({ onLogin, setLoggedIn }) {
                     </label>
                     <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-300" />
                 </div>
-                <button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold px-4 py-3 rounded-lg transition duration-300 ease-in-out transform hover:-translate-y-1">Sign In</button>
+                <button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold px-4 py-3 rounded-lg transition duration-300 ease-in-out transform hover:-translate-y-1">{loginLoading ? "Loading..." : "Sign In"}</button>
             </form>
         </div>
     );

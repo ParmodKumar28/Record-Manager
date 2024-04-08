@@ -5,8 +5,9 @@ import axios from "axios";
 axios.defaults.withCredentials = true;
 
 const instance = axios.create({
-  baseURL: "https://record-manager-ug87.onrender.com/api/",
-  withCredentials: true
+  // baseURL: "https://record-manager-ug87.onrender.com/api/",
+  baseURL: "http://localhost:8000/api/",
+  withCredentials: true,
 });
 
 export default instance;
