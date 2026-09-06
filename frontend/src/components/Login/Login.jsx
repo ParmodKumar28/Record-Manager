@@ -45,13 +45,13 @@ function Login({ onLogin, setLoggedIn }) {
                     <label htmlFor="username" className="flex items-center mb-2 text-lg text-gray-700">
                         <FaUser className="mr-2" /> Username
                     </label>
-                    <input type="text" id="username" value={username} onChange={(e) => setUsername(e.target.value)} className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-300" />
+                    <input type="text" id="username" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="mantiseye" className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-300" />
                 </div>
                 <div className="mb-6">
                     <label htmlFor="password" className="flex items-center mb-2 text-lg text-gray-700">
                         <FaLock className="mr-2" /> Password
                     </label>
-                    <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-300" />
+                    <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="mantiseye2024" className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-300" />
                 </div>
                 <button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold px-4 py-3 rounded-lg transition duration-300 ease-in-out transform hover:-translate-y-1">{loginLoading ? "Loading..." : "Sign In"}</button>
             </form>
