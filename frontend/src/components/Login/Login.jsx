@@ -4,8 +4,8 @@ import { FaUser, FaLock } from 'react-icons/fa';
 
 function Login({ onLogin, setLoggedIn }) {
     // State variables for username, password, and error message
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
+    const [username, setUsername] = useState(process.env.REACT_APP_USERNAME);
+    const [password, setPassword] = useState(process.env.REACT_APP_PASSWORD);
     const [error, setError] = useState('');
     const [loginLoading, setloginLoading] = useState(false);
 
@@ -37,10 +37,10 @@ function Login({ onLogin, setLoggedIn }) {
 
     // JSX for the login form
     return (
-        <div className="flex justify-center items-center h-screen bg-gradient-to-r from-blue-400 to-purple-500">
+        <div className="flex items-center justify-center h-screen bg-gradient-to-r from-blue-400 to-purple-500">
             <form onSubmit={handleSubmit} className="p-6 bg-white rounded-lg shadow-xl">
-                <h2 className="text-3xl mb-6 font-bold text-gray-800">Welcome Back!</h2>
-                {error && <p className="text-red-600 mb-4">{error}</p>} {/* Display the error message if there's an error */}
+                <h2 className="mb-6 text-3xl font-bold text-gray-800">Welcome Back!</h2>
+                {error && <p className="mb-4 text-red-600">{error}</p>} {/* Display the error message if there's an error */}
                 <div className="mb-6">
                     <label htmlFor="username" className="flex items-center mb-2 text-lg text-gray-700">
                         <FaUser className="mr-2" /> Username
@@ -53,7 +53,7 @@ function Login({ onLogin, setLoggedIn }) {
                     </label>
                     <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="mantiseye2024" className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-300" />
                 </div>
-                <button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold px-4 py-3 rounded-lg transition duration-300 ease-in-out transform hover:-translate-y-1">{loginLoading ? "Loading..." : "Sign In"}</button>
+                <button type="submit" className="w-full px-4 py-3 font-bold text-white transition duration-300 ease-in-out transform bg-blue-600 rounded-lg hover:bg-blue-700 hover:-translate-y-1">{loginLoading ? "Loading..." : "Sign In"}</button>
             </form>
         </div>
     );
