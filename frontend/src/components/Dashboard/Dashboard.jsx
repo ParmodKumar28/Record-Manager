@@ -95,16 +95,16 @@ function Dashboard() {
 
     // JSX for the dashboard component
     return (
-        <div className="container mx-auto p-4">
+        <div className="container p-4 mx-auto">
             <div className="mb-4">
-                <h2 className="text-xl font-bold mb-2">Dashboard</h2>
-                {notification && <div className="bg-green-200 text-green-800 p-2 mb-2">{notification}</div>}
-                {errorNotification && <div className="bg-red-200 text-red-800 p-2 mb-2">{errorNotification}</div>}
-                <div className="flex items-center mb-4">
+                <h2 className="mb-2 text-xl font-bold">Dashboard</h2>
+                {notification && <div className="p-2 mb-2 text-green-800 bg-green-200">{notification}</div>}
+                {errorNotification && <div className="p-2 mb-2 text-red-800 bg-red-200">{errorNotification}</div>}
+                <div className="flex flex-col items-center mb-4 space-y-2 sm:flex-row sm:space-x-2 sm:space-y-0">
                     <select
                         value={activeDatabase}
                         onChange={(e) => setActiveDatabase(e.target.value)}
-                        className="border px-4 py-2 rounded-lg mr-2"
+                        className="px-4 py-2 mr-2 border rounded-lg"
                     >
                         <option value="database1">Database 1</option>
                         <option value="database2">Database 2</option>
@@ -115,33 +115,33 @@ function Dashboard() {
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
                         placeholder="Search"
-                        className="border px-4 py-2 rounded-lg mr-2"
+                        className="px-4 py-2 mr-2 border rounded-lg"
                     />
-                    <button onClick={() => handleSort('name')} className="border px-4 py-2 rounded-lg mr-2">Sort by Name</button>
-                    <button onClick={() => handleSort('email')} className="border px-4 py-2 rounded-lg mr-2">Sort by Email</button>
-                    <button onClick={() => handleSort('phoneNumber')} className="border px-4 py-2 rounded-lg">Sort by Phone Number</button>
+                    <button onClick={() => handleSort('name')} className="px-4 py-2 mr-2 border rounded-lg">Sort by Name</button>
+                    <button onClick={() => handleSort('email')} className="px-4 py-2 mr-2 border rounded-lg">Sort by Email</button>
+                    <button onClick={() => handleSort('phoneNumber')} className="px-4 py-2 border rounded-lg">Sort by Phone Number</button>
                 </div>
-                <table className="w-full border-collapse border border-gray-500">
+                <table className="w-full border border-collapse border-gray-500 sm:table-auto">
                     <thead>
                         <tr>
-                            <th className="border border-gray-500 px-4 py-2">Name</th>
-                            <th className="border border-gray-500 px-4 py-2">Email</th>
-                            <th className="border border-gray-500 px-4 py-2">Phone Number</th>
+                            <th className="px-4 py-2 border border-gray-500">Name</th>
+                            <th className="px-4 py-2 border border-gray-500">Email</th>
+                            <th className="px-4 py-2 border border-gray-500">Phone Number</th>
                         </tr>
                     </thead>
                     <tbody>
                         {filteredRecords.map((record, index) => (
                             <tr key={index}>
-                                <td className="border border-gray-500 px-4 py-2">{record.name}</td>
-                                <td className="border border-gray-500 px-4 py-2">{record.email}</td>
-                                <td className="border border-gray-500 px-4 py-2">{record.phoneNumber}</td>
+                                <td className="px-4 py-2 border border-gray-500">{record.name}</td>
+                                <td className="px-4 py-2 border border-gray-500">{record.email}</td>
+                                <td className="px-4 py-2 border border-gray-500">{record.phoneNumber}</td>
                             </tr>
                         ))}
                     </tbody>
                 </table>
             </div>
             <form onSubmit={handleSubmit} className="mb-4">
-                <h2 className="text-xl font-bold mb-2">Add New Record</h2>
+                <h2 className="mb-2 text-xl font-bold">Add New Record</h2>
                 <div className="grid grid-cols-2 gap-4">
                     <input
                         type="text"
@@ -149,7 +149,7 @@ function Dashboard() {
                         value={newRecord.name}
                         onChange={handleInputChange}
                         placeholder="Name"
-                        className="border px-4 py-2 rounded-lg"
+                        className="px-4 py-2 border rounded-lg"
                     />
                     <input
                         type="email"
@@ -157,7 +157,7 @@ function Dashboard() {
                         value={newRecord.email}
                         onChange={handleInputChange}
                         placeholder="Email"
-                        className="border px-4 py-2 rounded-lg"
+                        className="px-4 py-2 border rounded-lg"
                     />
                     <input
                         type="text"
@@ -165,10 +165,10 @@ function Dashboard() {
                         value={newRecord.phoneNumber}
                         onChange={handleInputChange}
                         placeholder="Phone Number"
-                        className="border px-4 py-2 rounded-lg"
+                        className="px-4 py-2 border rounded-lg"
                     />
                 </div>
-                <button type="submit" className="mt-2 bg-blue-600 hover:bg-blue-700 text-white font-bold px-4 py-2 rounded-lg">
+                <button type="submit" className="px-4 py-2 mt-2 font-bold text-white bg-blue-600 rounded-lg hover:bg-blue-700">
                     Add Record
                 </button>
             </form>
